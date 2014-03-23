@@ -5,13 +5,18 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.rushdevo.keydroid.app.db.UserDatabaseHelper;
 
-public class MainActivity extends ActionBarActivity {
+
+public class KeydroidActivity extends ActionBarActivity {
+
+    private UserDatabaseHelper userDatabaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        userDatabaseHelper = new UserDatabaseHelper(this);
     }
 
 
