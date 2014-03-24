@@ -4,6 +4,9 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.rushdevo.keydroid.app.db.KeydroidDatabaseHelper;
 
@@ -15,10 +18,10 @@ public class KeydroidActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_keydroid);
         keydroidDatabaseHelper = new KeydroidDatabaseHelper(this);
+        initializeUI();
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -38,6 +41,13 @@ public class KeydroidActivity extends ActionBarActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void initializeUI() {
+        Button registerButton = (Button)findViewById(R.id.register_user_button);
+        EditText nameField = (EditText)findViewById(R.id.keybase_id_field);
+        registerButton.setVisibility(View.VISIBLE);
+        nameField.setVisibility(View.VISIBLE);
     }
 
 }
