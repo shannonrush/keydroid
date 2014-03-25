@@ -1,4 +1,4 @@
 keydroid
 ========
 
-Android app for texting super secret keybase.io messages
+Android app for texting super secret encrypted messages
