@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_weight="0.00"
-        android:onClick="registerDevice"
+        android:onClick="saveUser"
         android:text="@string/register_user_button"
         android:layout_below="@+id/keybase_id_field"
         android:layout_alignParentLeft="true"

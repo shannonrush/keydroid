@@ -2,6 +2,7 @@ package com.rushdevo.keydroid.app;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -9,11 +10,14 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.rushdevo.keydroid.app.db.KeydroidDatabaseHelper;
+import com.rushdevo.keydroid.app.db.UserDataSource;
+import com.rushdevo.keydroid.app.db.model.User;
 
 
 public class KeydroidActivity extends ActionBarActivity {
 
     private KeydroidDatabaseHelper keydroidDatabaseHelper;
+    private UserDataSource userDataSource;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,5 +53,31 @@ public class KeydroidActivity extends ActionBarActivity {
         registerButton.setVisibility(View.VISIBLE);
         nameField.setVisibility(View.VISIBLE);
     }
+
+    public void saveUser(View view) {
+        // create user in db
+        EditText nameField = (EditText)findViewById(R.id.keybase_id_field);
+
+        String keybase_id = nameField.getText().toString();
+        User user = new User(null,keybase_id);
+        userDataSource = new UserDataSource(this);
+        userDataSource.open();
+        userDataSource.createUser(user);
+
+        // save keybase_id and keydroid_id in AWS DB
+    }
+
+//    public void registerDevice(View v) {
+//        EditText nameField = (EditText)findViewById(R.id.device_name_field);
+//        DEVICE_NAME = nameField.getText().toString();
+//        GCMRegistrar.checkDevice(this);
+//        GCMRegistrar.checkManifest(this);
+//        final String regId = GCMRegistrar.getRegistrationId(this);
+//        if (regId.equals("")) {
+//            GCMRegistrar.register(this, GCM_PROJECT_ID);
+//        } else {
+//            Log.v("CamCamActivity", "Already registered with GCM");
+//        }
+//    }
 
 }
