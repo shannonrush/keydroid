@@ -6,7 +6,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.view.View;
+import android.widget.EditText;
 
+import com.rushdevo.keydroid.app.R;
 import com.rushdevo.keydroid.app.db.model.User;
 
 public class UserDataSource {
@@ -46,18 +49,16 @@ public class UserDataSource {
         return user;
     }
 
-    /**
-     * Saves a new user to the database.
-     * TODO Check for existing User before creation
-     *
-     * @param user The user to save
-     */
+
     public void createUser(User user) {
         ContentValues values = new ContentValues();
         values.put(USERS_KEYBASE_ID, user.getKeybaseID());
         int insertId = (int)db.insert(USERS_TABLE_NAME, null, values);
         user.setId(insertId);
     }
+
+
+
 
     private User cursorToUser(Cursor cursor) {
         Integer id = cursor.getInt(ID_INDEX);

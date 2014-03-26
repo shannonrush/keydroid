@@ -4,6 +4,8 @@
     <string name="app_name">Keydroid</string>
     <string name="keybase_id_hint">Keybase User Name</string>
     <string name="register_user_button">Register</string>
-    <string name="action_settings"> </string>
+    <string name="action_settings"></string>
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>
