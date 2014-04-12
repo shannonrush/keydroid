@@ -21,4 +21,6 @@ android {
 dependencies {
     compile 'com.android.support:appcompat-v7:+'
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile files('libs/aws-android-sdk-1.7.1.1-debug.jar')
+    compile 'com.google.android.gms:play-services:4.0.30'
 }

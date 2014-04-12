@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="aws-android-sdk-1.7.1.1-debug">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/libs/aws-android-sdk-1.7.1.1-debug.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

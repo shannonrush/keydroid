@@ -2,11 +2,32 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.rushdevo.keydroid.app" >
 
+    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="17"/>
+
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+    <permission android:name="com.example.gcm.permission.C2D_MESSAGE"
+                android:protectionLevel="signature" />
+    <uses-permission android:name="com.example.gcm.permission.C2D_MESSAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+
+        <receiver android:name=".MyReceiver" android:exported="true"
+                  android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <category android:name="com.rushdevo.keydroid.app"/>
+            </intent-filter>
+        </receiver>
+
         <activity
             android:name="com.rushdevo.keydroid.app.KeydroidActivity"
             android:label="@string/app_name" >
@@ -20,6 +41,8 @@
             android:name="com.rushdevo.keydroid.app.RegisterActivity"
             android:label="@string/title_activity_register" >
         </activity>
+        <meta-data android:name="com.google.android.gms.version"
+                   android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>

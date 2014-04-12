@@ -3,17 +3,23 @@ package com.rushdevo.keydroid.app;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 
 
 public class KeydroidActivity extends ActionBarActivity {
+
+    private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_keydroid);
+        checkPlayServices();
 //        if (completeUser) {
 //            // start Texting activity
 //        } else {
@@ -21,6 +27,12 @@ public class KeydroidActivity extends ActionBarActivity {
         Intent intent = new Intent(this,RegisterActivity.class);
         startActivity(intent);
         //}
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        checkPlayServices();
     }
 
     @Override
@@ -41,6 +53,22 @@ public class KeydroidActivity extends ActionBarActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    private boolean checkPlayServices() {
+        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
+        if (resultCode != ConnectionResult.SUCCESS) {
+            if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
+                GooglePlayServicesUtil.getErrorDialog(resultCode, this,
+                        PLAY_SERVICES_RESOLUTION_REQUEST).show();
+            } else {
+                Log.i("KeydroidActivity", "This device is not supported.");
+                finish();
+            }
+            return false;
+        }
+        return true;
+    }
+
 
 
 }
